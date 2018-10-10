@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
+require('dotenv').config();
 
 var {mongoose} = require('./mongoose');
 var {Upload} = require('./models/upload');
@@ -11,10 +12,10 @@ var internetAvailable = require("internet-available");
 const AWS = require('aws-sdk');
 
 const s3 = new AWS.S3({
-  accessKeyId: 'AKIAIEEVYQPOU6D3I5BA',
-  secretAccessKey: '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'
+  accessKeyId: process.env.S3_ACCESSKEYID,
+  secretAccessKey: process.env.S3_SECRETACCESSKEY
 });
-const s3_bucket = 'c3-demo';
+const s3_bucket = process.env.S3_BUCKET;
 
 var app = express();
 
